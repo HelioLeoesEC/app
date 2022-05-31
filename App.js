@@ -31,7 +31,7 @@ export default function App() {
     onPress={() => Keyboard.dismiss()}>
     <View style={styles.container}>
       <Text style = {styles.Titulo}>Investeasy</Text>
-      <Text>Deslocando para o futuro</Text>
+      <Text>Deslocando para o futere</Text>
       <Text>Valor do produto</Text>
       <TextInput
       keyboardType='number-pad'

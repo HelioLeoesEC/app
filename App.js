@@ -13,10 +13,10 @@ export default function App() {
 
   const handerCalcularFuturo = () =>{
 
-    let resultado=0
+    let resultado = 0
     const parcela = parseInt(parcelas)
-    for (let index = 0; index < parcela - 1; index++) {
-      resultado = resultado + ((parseFloat(valorprodutofuturo)/parcela) / (1 + (parseFloat(taxafuturo)/100))**index )
+    for (let index = 0; index <= parcela - 1; index++) {
+      resultado = resultado + (parseFloat(valorprodutofuturo)/parcela) / (1 + (parseFloat(taxafuturo)/100))**index 
     }
     return Alert.alert("Resultado",`O valor e ${resultado.toFixed(2)}`)
   };

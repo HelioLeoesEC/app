@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TextInput, View,TouchableOpacity,Alert,TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import { useState } from 'react';
+import styles from './src/style';
 
 export default function App() {
   const [valorproduto, setValorProduto] = useState("")
@@ -31,7 +32,8 @@ export default function App() {
     onPress={() => Keyboard.dismiss()}>
     <View style={styles.container}>
       <Text style = {styles.Titulo}>Investeasy</Text>
-      <Text>Deslocando para o futere</Text>
+      <View style = {styles.subtitle}><Text>Deslocando para o futuro</Text></View>
+
       <Text>Valor do produto</Text>
       <TextInput
       keyboardType='number-pad'
@@ -53,7 +55,7 @@ export default function App() {
       style = {styles.botao}>
         <Text>Calcular</Text>
       </TouchableOpacity>
-      <Text>Deslocando para o presente</Text>
+      <Text style = {styles.subtitle}>Deslocando para o presente</Text>
       <Text>Valor do Produto</Text>
       <TextInput
       keyboardType='number-pad'
@@ -81,48 +83,3 @@ export default function App() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop:30,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputdados: {
-    alignItems: 'center',
-    alignContent: 'center',
-    borderWidth: 1,
-    height: 50,
-    width: 200,
-    paddingTop: 5,
-    borderRadius: 10
-
-  },
-  botao: {
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ff0000',
-    marginTop: 10,
-    height: 50,
-    width: 200,
-    borderRadius: 10,
-  },
-  botao2:{
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#12ff00',
-    marginTop: 10,
-    height: 50,
-    width: 200,
-    borderRadius: 10,
-  },
-
-  Titulo:{
-    fontSize: 30,
-    marginBottom: 10,
-  }
-});

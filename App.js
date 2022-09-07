@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, TextInput, View,TouchableOpacity,Alert,TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import { StyleSheet, Text, TextInput, View,TouchableOpacity,Alert, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import { useState } from 'react';
 import styles from './src/style';
 
@@ -11,16 +11,19 @@ export default function App() {
   const [valorprodutofuturo, setValorProdutoFuturo] = useState("")
   const [taxafuturo, setTaxaFuturo] = useState("")
   const [parcelas, setParcelas] = useState("")
-
+  const [PrimeiraParcela, setPrimeiraParcela] = useState("")
   const handerCalcularFuturo = () =>{
 
     let resultado = 0
+    const primeira = parseInt(PrimeiraParcela)
     const parcela = parseInt(parcelas)
-    for (let index = 0; index <= parcela - 1; index++) {
+
+    for (let index =parcela + primeira; index >= primeira; index--) {
       resultado = resultado + (parseFloat(valorprodutofuturo)/parcela) / (1 + (parseFloat(taxafuturo)/100))**index 
     }
     return Alert.alert("Resultado",`O valor e ${resultado.toFixed(2)}`)
   };
+
 
   const handerCalcular = () => {
     const resultado = parseFloat(valorproduto) * (1 + (parseFloat(taxa))/100)**tempo
@@ -32,52 +35,58 @@ export default function App() {
     onPress={() => Keyboard.dismiss()}>
     <View style={styles.container}>
       <Text style = {styles.Titulo}>Investeasy</Text>
-      <View style = {styles.subtitle}><Text>Deslocando para o futuro</Text></View>
-
-      <Text>Valor do produto</Text>
+      <View ><Text style = {styles.subtitle}>Deslocando para o futuro</Text></View>
+      
+      <View ><Text style = {styles.texto}>Valor do produto - R$</Text></View>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
       onChangeText={(text) =>setValorProduto(text.replace(/\D/g,""))}></TextInput>
-      <Text>Taxa</Text>
+      <Text style = {styles.texto}>Taxa -(am%)</Text>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
       onChangeText={(text) =>setTaxa(text.replace(/\D/g,""))}></TextInput>
-      <Text>Tempo</Text>
+      <View><Text style = {styles.texto}>Tempo(m)</Text></View>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
     
       onChangeText={(text) =>setTempo(text.replace(/\D/g,""))}></TextInput>
-      <TouchableOpacity 
+      <View style = {styles.divbotao}><TouchableOpacity 
       onPress = {handerCalcular}
+     
       style = {styles.botao}>
-        <Text>Calcular</Text>
-      </TouchableOpacity>
+        <Text style = {styles.textocomum}>Calcular</Text>
+      </TouchableOpacity></View>
       <Text style = {styles.subtitle}>Deslocando para o presente</Text>
-      <Text>Valor do Produto</Text>
+      <View><Text style = {styles.texto}>Valor do Produto</Text></View>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
       onChangeText={(text) =>setValorProdutoFuturo(text.replace(/\D/g,""))}></TextInput>
-      <Text>Taxa</Text>
+      <View><Text style = {styles.texto}>Taxa</Text></View>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
       onChangeText={(text) =>setTaxaFuturo(text.replace(/\D/g,""))}></TextInput>
-      <Text>Parcelas</Text>
+      <View><Text style = {styles.texto}>Primeira Parcela</Text></View>
+      <TextInput
+      keyboardType='number-pad'
+      style = {styles.inputdados}
+      onChangeText={(text) =>setPrimeiraParcela(text.replace(/\D/g,""))}></TextInput>
+      <Text style = {styles.texto} >Parcelas</Text>
       <TextInput
       keyboardType='number-pad'
       style = {styles.inputdados}
       onChangeText={(text) =>setParcelas(text.replace(/\D/g,""))}></TextInput>
-      <TouchableOpacity
+      <View style = {styles.divbotao}><TouchableOpacity
         onPress = {handerCalcularFuturo}
         style = {styles.botao2}
         >
 
-        <Text>Calcular</Text>
-      </TouchableOpacity>
+        <View ><Text style = {styles.textocomum}>Calcular</Text></View>
+      </TouchableOpacity></View>
       <StatusBar style="auto" />
     </View></TouchableWithoutFeedback>
     </ScrollView>
